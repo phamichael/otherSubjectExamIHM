@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"       
+          "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+  <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+  <constant name="struts.devMode" value="true"/>
+  
+  <include file="example.xml"/>
+  
+  <!-- Add addition packages and configuration here. -->
+
+    <package name="json" namespace="/" extends="json-default">
+
+        <action name="search" class="actions.GreenHat" method="search">
+            <result type="json"/>
+        </action>
+
+        <action name="selectKid" class="actions.GreenHat" method="selectKid">
+            <result type="json"/>
+        </action>
+
+        <action name="takeDecision" class="actions.SantaClaus" method="takeDecision">
+            <result type="json"/>
+        </action>
+
+    </package>
+
+    <package name="default" namespace="/" extends="struts-default">
+
+      <default-action-ref name="connection"/>
+
+          <action name="connection">
+              <result>/WEB-INF/Connection.jsp</result>
+          </action>
+
+          <action name="menu" class="actions.Connection">
+              <result name="success">/WEB-INF/Menu.jsp</result>
+              <result name="error">/WEB-INF/Connection.jsp</result>
+          </action>
+
+          <action name="disconnection" class="actions.Disconnection">
+              <result>/WEB-INF/Connection.jsp</result>
+          </action>
+
+          <action name="santaClaus" class="actions.Menu" method="santaClaus">
+              <result>/WEB-INF/SantaClaus.jsp</result>
+          </action>
+
+          <action name="greenHat" class="actions.Menu" method="greenHat">
+              <result>/WEB-INF/GreenHat.jsp</result>
+          </action>
+
+          <action name="redHat" class="actions.Menu" method="redHat">
+              <result>/WEB-INF/RedHat.jsp</result>
+          </action>
+
+          <action name="registerKid" class="actions.GreenHat" method="registerKid">
+              <result>/WEB-INF/RegisterKid.jsp</result>
+          </action>
+
+          <action name="editGifts" class="actions.GreenHat" method="editGifts">
+              <result>/WEB-INF/GreenHat.jsp</result>
+          </action>
+
+          <action name="addKid" class="actions.GreenHat" method="addKid">
+              <result>/WEB-INF/GreenHat.jsp</result>
+          </action>
+
+          <action name="validateDecision" class="actions.SantaClaus" method="validateDecision">
+              <result>/WEB-INF/SantaClaus.jsp</result>
+          </action>
+
+    </package>
+
+</struts>

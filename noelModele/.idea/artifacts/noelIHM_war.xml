@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="noelIHM:war">
+    <output-path>$PROJECT_DIR$/noelIHM/target</output-path>
+    <root id="archive" name="noelIHM-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="noelIHM:war exploded" />
+    </root>
+  </artifact>
+</component>
