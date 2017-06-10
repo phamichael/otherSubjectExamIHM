@@ -35,7 +35,7 @@
             <div class="col-md-offset-4 col-md-4">
                 <br/>
                 <br/>
-                <s:form action="addKid" theme="bootstrap">
+                <s:form action="confirmationAddKid" theme="bootstrap">
                     <s:textfield
                             id="name"
                             name="name"
@@ -108,7 +108,6 @@
                     <br/>
                     <s:submit id="btn-submit" cssClass="btn btn-primary pull-right" value="Ajouter"/>
                 </s:form>
-
             </div>
         </div>
     </div>

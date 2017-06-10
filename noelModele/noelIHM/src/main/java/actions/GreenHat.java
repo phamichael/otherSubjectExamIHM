@@ -1,18 +1,15 @@
 package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
-import jdk.nashorn.internal.runtime.ECMAException;
-import modele.objet.Cadeau;
 import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import facade.ServiceImpl;
 import modele.personnes.Enfant;
+import modele.objet.Cadeau;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,11 +45,15 @@ public class GreenHat extends ActionSupport implements ApplicationAware, Session
 
     private Collection<Enfant> kids;
 
-    private String id;
+    private String kidSelected;
 
     private Enfant kid;
 
     private Collection<Cadeau> gifts;
+
+    private Collection<Cadeau> toys;
+
+    private String giftSelected;
 
     private Map<String, Object> session;
 
@@ -81,7 +82,7 @@ public class GreenHat extends ActionSupport implements ApplicationAware, Session
         return SUCCESS;
     }
 
-    public String registerKid() throws Exception
+    public String addKid() throws Exception
     {
         session.put("toys", service.getCadeaux());
         return SUCCESS;
@@ -89,19 +90,26 @@ public class GreenHat extends ActionSupport implements ApplicationAware, Session
 
     public String selectKid() throws Exception
     {
-        kid = service.rechercherEnfantParId(Long.parseLong(id));
+        kid = service.rechercherEnfantParId(Long.parseLong(kidSelected));
         gifts = kid.getDemandes();
+        toys = service.getCadeaux();
+        session.put("kidSelected", kidSelected);
         return SUCCESS;
     }
 
-    public String editGifts() throws Exception
+    public String updateGifts() throws Exception
     {
-        //
-        // service.enregistrerDemandes((String) session.get("accessKey"), Long.parseLong((String) session.get("kidSelected")), String... cadeaux);
+        String[] list = new String[5];
+        list[0] = toy1;
+        list[1] = toy2;
+        list[2] = toy3;
+        list[3] = toy4;
+        list[4] = toy5;
+        service.enregistrerDemandes((String) session.get("accessKey"), Long.parseLong((String) session.get("kidSelected")), list);
         return SUCCESS;
     }
 
-    public String addKid() throws Exception
+    public String confirmationAddKid() throws Exception
     {
         String[] list = new String[5];
         list[0] = toy1;
@@ -236,12 +244,12 @@ public class GreenHat extends ActionSupport implements ApplicationAware, Session
         this.kid = kid;
     }
 
-    public String getId() {
-        return id;
+    public String getKidSelected() {
+        return kidSelected;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setKidSelected(String kidSelected) {
+        this.kidSelected = kidSelected;
     }
 
     public Collection<Cadeau> getGifts() {
@@ -250,6 +258,22 @@ public class GreenHat extends ActionSupport implements ApplicationAware, Session
 
     public void setGifts(Collection<Cadeau> gifts) {
         this.gifts = gifts;
+    }
+
+    public Collection<Cadeau> getToys() {
+        return toys;
+    }
+
+    public void setToys(Collection<Cadeau> toys) {
+        this.toys = toys;
+    }
+
+    public String getGiftSelected() {
+        return giftSelected;
+    }
+
+    public void setGiftSelected(String giftSelected) {
+        this.giftSelected = giftSelected;
     }
 
     public Map<String, Object> getSession() {

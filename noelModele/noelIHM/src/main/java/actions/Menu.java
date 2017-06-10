@@ -1,9 +1,10 @@
 package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
-import facade.ServiceImpl;
 import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.SessionAware;
+
+import facade.ServiceImpl;
 
 import java.util.Map;
 

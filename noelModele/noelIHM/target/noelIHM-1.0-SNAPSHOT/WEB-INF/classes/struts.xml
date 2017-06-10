@@ -55,15 +55,15 @@
               <result>/WEB-INF/RedHat.jsp</result>
           </action>
 
-          <action name="registerKid" class="actions.GreenHat" method="registerKid">
-              <result>/WEB-INF/RegisterKid.jsp</result>
+          <action name="addKid" class="actions.GreenHat" method="addKid">
+              <result>/WEB-INF/AddKid.jsp</result>
           </action>
 
-          <action name="editGifts" class="actions.GreenHat" method="editGifts">
+          <action name="updateGifts" class="actions.GreenHat" method="updateGifts">
               <result>/WEB-INF/GreenHat.jsp</result>
           </action>
 
-          <action name="addKid" class="actions.GreenHat" method="addKid">
+          <action name="confirmationAddKid" class="actions.GreenHat" method="confirmationAddKid">
               <result>/WEB-INF/GreenHat.jsp</result>
           </action>
 

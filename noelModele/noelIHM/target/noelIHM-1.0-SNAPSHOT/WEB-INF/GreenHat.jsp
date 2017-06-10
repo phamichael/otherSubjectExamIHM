@@ -34,33 +34,34 @@
                     {
                         if(result.kids.length > 0)
                         {
-                            var formSelectKid =
+                            var selectKidForm =
                                     '<h3>Résultats</h3>' +
                                     '<br/>' +
                                     '<form id="selectKid" name="selectKid" class="selectKid" ' +
                                     'action="/selectKid.action" method="post">' +
                                         '<fieldset>' +
-                                            '<select id="id" name="id">';
+                                            '<select id="kidSelected" name="kidSelected">';
                             var cpt = 0;
                             for (var kid in result.kids) {
-                                formSelectKid +=
+                                selectKidForm +=
                                                 '<option value="' + result.kids[cpt].identifiant + '">' + result.kids[cpt].nom + ' ' + result.kids[cpt].prenom + '</option>';
                                 cpt++;
                             }
-                            formSelectKid +=
+                            selectKidForm +=
                                             '</select><br/><br/>' +
                                             '<input id="selectKidSubmit" class="btn btn-primary" value="Sélectionner" type="submit"> </input>' +
                                         '</fieldset>' +
                                     '</form>';
-                            $('#formSelectKid').html(formSelectKid);
+                            $('#selectKidForm').html(selectKidForm);
                             $('.addKid').hide();
                         } else
                         {
-                            $('#formSelectKid').html('<h3>Résultats</h3><br/>'
+                            $('#selectKidForm').html('<h3>Résultats</h3><br/>'
                                     + '<strong>Aucun résultat.</strong><br/><br/>');//+
                                     //'<a href="/registrerKid.action?">Ajouter cette enfant</a>');
                             $('.addKid').show();
                         }
+                        $('#updateGiftsForm').html('');
                     },
                     error: function()
                     {
@@ -69,7 +70,7 @@
                 });
             });
 
-            $('.selectKid').submit(function(e)
+            $('body').on('submit', '.selectKid', function(e)
             {
                 e.preventDefault();
                 var data = $(this).serialize();
@@ -81,30 +82,90 @@
                     dataType: "json",
                     success: function(result)
                     {
-                        var formEditGifts =
-                                    '<form id="editGift" class="editGift" name="editGift" ' +
-                                    'action="/editGift.action" method="post">' +
+                        var updateGiftsForm =
+                                    '<h3>Modifier la liste des cadeaux</h3>' +
+                                    '<br/>' +
+                                    '<form id="updateGifts" class="updateGifts" name="updateGifts" ' +
+                                    'action="/updateGifts.action" method="post">' +
                                         '<fieldset>' +
-                                            'Nom: ' + result.kid.nom + '</br>' +
-                                            'Prénom: ' + result.kid.prenom + '</br>' +
-                                            'Adresse: ' + result.kid.adresse + '</br>' +
-                                            'Ville: ' + result.kid.ville + '</br>' +
-                                            'Code postal: ' + result.kid.codePostal + '</br>' +
-                                            'Cadeaux: <br/>' +
-                                            '<select id="giftsSelected"  name="giftSelected">';
+                                            'Nom: ' + result.kid.nom + '</br></br>' +
+                                            'Prénom: ' + result.kid.prenom + '</br></br>' +
+                                            'Adresse: ' + result.kid.adresse + '</br></br>' +
+                                            'Ville: ' + result.kid.ville + '</br></br>' +
+                                            'Code postal: ' + result.kid.codePostal + '</br></br>' +
+                                            'Cadeaux: <br/></br>' +
+                                            '<select id="giftSelected"  name="giftSelected">';
                         var cpt = 0;
                         for(var gift in result.gifts)
                         {
-                            formEditGifts +=
-                                                '<option id="' + result.gifts[cpt].libelle + '" name="' + result.gifts[cpt].libelle + '">' + result.gifts[cpt].libelle + '> </option>';
+                            updateGiftsForm +=
+                                                '<option id="' + result.gifts[cpt].libelle + '" name="' + result.gifts[cpt].libelle + '">' + result.gifts[cpt].libelle + '</option>';
+                            cpt++;
                         }
 
-                        formEditGifts +=
+                        updateGiftsForm +=
                                             '</select><br/><br/>' +
-                                            '<input id="editGiftsSubmit" class="btn btn-primary" value="Enregistrer modification" type="submit"> </input>' +
+                                            'Nouvelle liste de cadeaux: <br/></br>' +
+                                            '<select id="toy1"  name="toy1">';
+
+                        cpt = 0;
+                        for(var toy1 in result.toys)
+                        {
+                            updateGiftsForm +=
+                                                '<option id="' + result.toys[cpt].libelle + '" name="' + result.toys[cpt].libelle + '">' + result.toys[cpt].libelle + '</option>';
+                            cpt++;
+                        }
+                        updateGiftsForm +=
+                                            '</select><br/><br/>' +
+                                            '<select id="toy2"  name="toy2">';
+
+                        cpt = 0;
+                        for(var toy2 in result.toys)
+                        {
+                            updateGiftsForm +=
+                                                '<option id="' + result.toys[cpt].libelle + '" name="' + result.toys[cpt].libelle + '">' + result.toys[cpt].libelle + '</option>';
+                            cpt++;
+                        }
+                        updateGiftsForm +=
+                                            '</select><br/><br/>' +
+                                            '<select id="toy3"  name="toy3">';
+
+                        cpt = 0;
+                        for(var toy3 in result.toys)
+                        {
+                            updateGiftsForm +=
+                                                '<option id="' + result.toys[cpt].libelle + '" name="' + result.toys[cpt].libelle + '">' + result.toys[cpt].libelle + '</option>';
+                            cpt++;
+                        }
+                        updateGiftsForm +=
+                                            '</select><br/><br/>' +
+                                            '<select id="toy4"  name="toy4">';
+
+                        cpt = 0;
+                        for(var toy4 in result.toys)
+                        {
+                            updateGiftsForm +=
+                                                '<option id="' + result.toys[cpt].libelle + '" name="' + result.toys[cpt].libelle + '">' + result.toys[cpt].libelle + '</option>';
+                            cpt++;
+                        }
+                        updateGiftsForm +=
+                                            '</select><br/><br/>' +
+                                            '<select id="toy5"  name="toy5">';
+
+                        cpt = 0;
+                        for(var toy5 in result.toys)
+                        {
+                            updateGiftsForm +=
+                                                '<option id="' + result.toys[cpt].libelle + '" name="' + result.toys[cpt].libelle + '">' + result.toys[cpt].libelle + '</option>';
+                            cpt++;
+                        }
+
+                        updateGiftsForm +=
+                                            '</select><br/><br/>' +
+                                            '<input id="updateGiftsSubmit" class="btn btn-primary" value="Enregistrer modification" type="submit"> </input>' +
                                         '</fieldset>' +
-                                    '</form>';
-                        $('#formEditGifts').html(formEditGifts);
+                                    '</form><br/><br/>';
+                        $('#updateGiftsForm').html(updateGiftsForm);
                     },
                     error: function()
                     {
@@ -143,9 +204,9 @@
                     <s:submit cssClass="btn btn-primary" value="Rechercher"/>
                 </s:form>
                 <br/>
-                <div id="formSelectKid"></div>
+                <div id="selectKidForm"></div>
                 <div id="addKid" class="addKid">
-                    <s:url action="registerKid" var="addKid">
+                    <s:url action="addKid" var="addKid">
                     </s:url>
                     <s:a href="%{addKid}">
                         Ajouter cette enfant
@@ -153,7 +214,7 @@
                 </div>
                 <br/>
                 <br/>
-                <div id="formEditGifts"></div>
+                <div id="updateGiftsForm"></div>
             </div>
         </div>
     </div>

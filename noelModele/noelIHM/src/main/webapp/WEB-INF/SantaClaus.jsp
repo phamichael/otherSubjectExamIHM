@@ -31,7 +31,7 @@
                     dataType: "json",
                     success: function (result)
                     {
-                        var formValidateDecision =
+                        var validateDecisionForm =
                                 '<h3>Choix</h3>' +
                                 '<br/>' +
                                 '<form id="validateDecision" name="validateDecision" class="validateDecision" ' +
@@ -40,10 +40,10 @@
                                         '<input id="wise" name="choice" value="wise" type="radio" checked="checked"> Sage  </input><br/><br/>' +
                                         '<input id="notWise" name="choice" value="notWise" type="radio"> Pas sage </input><br/><br/>' +
                                         '<input id="goodQuestion" name="choice" value="goodQuestion" type="radio"> Ne pas se prononcer pour l\'instant </input><br/><br/>' +
-                                        '<input id="validateDecision" class="btn btn-primary" value="Valider" type="submit"> </input>' +
+                                        '<input id="validateDecisionSubmit" class="btn btn-primary" value="Valider" type="submit"> </input>' +
                                     '</fieldset>' +
                                 '</form>';
-                            $('#formValidateDecision').html(formValidateDecision);
+                            $('#validateDecisionForm').html(validateDecisionForm);
                     },
                     error: function()
                     {
@@ -86,7 +86,7 @@
                 </s:form>
                 <br/>
                 <br/>
-                <div id="formValidateDecision"></div>
+                <div id="validateDecisionForm"></div>
             </div>
             <div class="col-md-offset-2 col-md-3">
                 <h3>Enfants sages non livrés</h3>
